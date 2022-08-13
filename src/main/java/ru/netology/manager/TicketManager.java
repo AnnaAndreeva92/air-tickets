@@ -19,7 +19,7 @@ public class TicketManager {
     }
 
 
-    public Ticket[] findAll(String from, String to){
+    public Ticket[] findAll(String from, String to) {
         Ticket[] results = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
             if (matches(ticket, from, to)) {
@@ -34,15 +34,18 @@ public class TicketManager {
         Arrays.sort(results);
         return results;
     }
+
     private boolean matches(Ticket ticket, String from, String to) {
         if (ticket.getFrom() != from) {
             return false;
-        };
+        }
+        ;
         if (ticket.getTo() != to) {
-            return  false;
+            return false;
         }
         return true;
     }
+
     public Ticket[] showOffers() {
         Ticket[] result = repository.getAll();
         Arrays.sort(result);

@@ -20,6 +20,7 @@ public class TicketRepository {
         tmp[lastIndex] = ticket;
         tickets = tmp;
     }
+
     public Ticket[] findAll() {
 
         return getTickets();
@@ -38,6 +39,7 @@ public class TicketRepository {
         tickets = tmp;
         return tmp;
     }
+
     public Ticket[] getAll() {
         return tickets;
     }
