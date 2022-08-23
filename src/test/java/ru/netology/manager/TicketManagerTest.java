@@ -14,7 +14,7 @@ public class TicketManagerTest {
     TicketRepository repository = new TicketRepository();
     TicketManager manager = new TicketManager(repository);
     private Ticket ticket1 = new Ticket(1, 1299, "SVO", "KZN", 90);
-    private Ticket ticket2 = new Ticket(2, 2199, "VKO", "KZN", 95);
+    private Ticket ticket2 = new Ticket(2, 2199, "SVO", "KZN", 95);
     private Ticket ticket3 = new Ticket(3, 6754, "SVO", "AER", 240);
     private Ticket ticket4 = new Ticket(4, 50_882, "DME", "SAW", 265);
     private Ticket ticket5 = new Ticket(5, 71_477, "AER", "MLE", 910);
@@ -39,6 +39,12 @@ public class TicketManagerTest {
         Arrays.sort(expected);
         assertArrayEquals(expected, actual);
         System.out.println(Arrays.toString(expected));
+    }
+
+    @Test
+    public void showMultipleItems() {
+        Ticket[] expected = new Ticket[]{ticket1, ticket2};
+        assertArrayEquals(expected, manager.findAll("SVO", "KZN"));
     }
 
     @Test // тест добавления еще одного элемента
@@ -94,10 +100,10 @@ public class TicketManagerTest {
 
     @Test //верный аэропорт прилета
     public void arrivalAirport() {
-        Ticket[] actual = manager.findAll("SVO", "KZN");
-        Ticket[] expected = new Ticket[]{ticket1};
-        assertArrayEquals(expected, actual);
-        System.out.println(Arrays.toString(expected));
+        Ticket[] actual = manager.findAll("SVO", "AER");
+        Ticket[] expected = new Ticket[]{ticket3};
+        assertArrayEquals(expected,actual);
+        System.out.println();
     }
 
     @Test // поиск имеющегося в списке
